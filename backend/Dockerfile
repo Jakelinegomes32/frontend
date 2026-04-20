@@ -1,18 +1,9 @@
-FROM node:20 AS build
+FROM python:3.11
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
-
 COPY . .
-RUN npm run build
 
+RUN pip install fastapi uvicorn 
 
-FROM nginx:alpine
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
