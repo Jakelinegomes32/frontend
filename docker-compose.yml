@@ -1,0 +1,24 @@
+services:
+  api:
+    #busca os dados da api dentro da pasta backend.
+    build: ./backend
+    #pega a porta 8000 dentro do container e expoe na porta 8000 do computador.
+    ports:
+      - "8000:8000"
+    #pega as variaveis de ambiente do arquivo .env.
+    env_file:
+      - .env
+    #garante que o serviço de api so inicie depois do redis e do db está pronto.
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:7
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: juju
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: juju
