@@ -1,0 +1,18 @@
+frontend:
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Instalar dependências
+      run: npm install
+      working-directory: ./frontend-juju
+
+    - name: Build frontend
+      run: npm run build
+      working-directory: ./frontend-juju
