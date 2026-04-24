@@ -5,7 +5,7 @@ on:
     branches: [develop]
 
 jobs:
-frontend:
+  frontend:
   runs-on: ubuntu-latest
 
   steps:
