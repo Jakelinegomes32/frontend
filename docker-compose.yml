@@ -1,7 +1,10 @@
 services:
   api:
     #busca os dados da api dentro da pasta backend.
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+
     #pega a porta 8000 dentro do container e expoe na porta 8000 do computador.
     ports:
       - "8000:8000"
@@ -13,6 +16,13 @@ services:
       - redis
       - db
 
+  frontend:
+    build: ./frontend-juju
+    ports: 
+      - "80:80"
+    depends_on:
+      - api
+ 
   redis:
     image: redis:7
     ports:
