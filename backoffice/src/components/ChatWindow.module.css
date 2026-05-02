@@ -1,0 +1,167 @@
+.window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--chat-bg);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.header {
+  background: white;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 11px;
+  color: var(--green);
+}
+
+.onlineDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.iconBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.dateDivider {
+  align-self: center;
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+.inputArea {
+  padding: 10px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.inputRow {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+}
+
+.inputIcon {
+  padding: 2px;
+  font-size: 16px;
+  color: var(--muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.inputIcon:hover {
+  color: var(--text);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--text);
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.sendBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--white);
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.sendBtn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.sendBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
