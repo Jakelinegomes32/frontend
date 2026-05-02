@@ -1,7 +1,10 @@
 services:
   api:
     #busca os dados da api dentro da pasta backend.
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+
     #pega a porta 8000 dentro do container e expoe na porta 8000 do computador.
     ports:
       - "8000:8000"
@@ -13,12 +16,31 @@ services:
       - redis
       - db
 
+  frontend:
+    build: ./frontend-juju
+    ports: 
+      - "5174:5174"
+    depends_on:
+      - api
+ 
   redis:
     image: redis:7
+    ports:
+      - "6379:6379"
 
   db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: juju
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: juju
+    image: postgres:15 #Pega a imagem do postgres na versão 15.
+    restart: always #sempre que o container parar, ele irá reiniciar.
+
+    environment: #Variaveis de ambiente para configurar o banco de dados.
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTEGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    volumes: #Cria um volume para persistir os dados do banco de dados.
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" #Expondo a porta 5432 do container para a porta 5432 do host.
+
+volumes:
+  postgres_data: #Nome do volume para o banco de dados.
